@@ -1,0 +1,27 @@
+{
+  "name": "chat-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandu-lucian/chat-application.git"
+  },
+  "author": "Lucian Sandu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandu-lucian/chat-application/issues"
+  },
+  "homepage": "https://github.com/sandu-lucian/chat-application#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  }
+}
