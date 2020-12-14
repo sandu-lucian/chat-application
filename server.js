@@ -3,10 +3,8 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
-const PORT = 5050;
-
-http.listen(PORT, () => {
-  console.log(`Server started at port ${PORT}`);
+http.listen(process.env.PORT || 3000, () => {
+  console.log(`[ SUCCESS ] Server started.`);
 });
 
 app.use(express.static(__dirname + "/public"));
