@@ -7,18 +7,16 @@ document
     const userName = input.value;
 
     if (userName.length > 0) {
-      document.getElementById("username-missing").classList.add("display-none");
+      document.getElementById("username-missing").classList.add("invisible");
       socket.emit("join-chat", userName);
     } else {
-      document
-        .getElementById("username-missing")
-        .classList.remove("display-none");
+      document.getElementById("username-missing").classList.remove("invisible");
     }
   });
 
 socket.on("joined-chat", function (userName, userCounter) {
-  document.getElementById("join-chat").classList.add("display-none");
-  document.getElementById("chat-container").classList.remove("display-none");
+  document.getElementById("join-chat").classList.add("d-none");
+  document.getElementById("chat-container").classList.remove("d-none");
   const messageContainer = document.getElementById("chat-messages");
   const userElement = document.createElement("p");
   userElement.innerHTML = userName;
@@ -63,6 +61,6 @@ socket.on("left-chat", function (message, userCounter) {
 });
 
 socket.on("menu", function () {
-  document.getElementById("join-chat").classList.remove("display-none");
-  document.getElementById("chat-container").classList.add("display-none");
+  document.getElementById("join-chat").classList.remove("d-none");
+  document.getElementById("chat-container").classList.add("d-none");
 });
