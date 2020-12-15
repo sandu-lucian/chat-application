@@ -24,7 +24,8 @@ io.on("connection", (socket) => {
     io.to("chat").emit(
       "joined-chat",
       `${userName} has joined the chat!`,
-      `${Object.keys(chatUsers).length} user(s) online!`
+      `${Object.keys(chatUsers).length} user(s) online!`,
+      chatUsers
     );
   });
 
@@ -41,7 +42,21 @@ io.on("connection", (socket) => {
     io.to("chat").emit(
       "left-chat",
       `${user} has left the chat!`,
-      `${Object.keys(chatUsers).length} user(s) online!`
+      `${Object.keys(chatUsers).length} user(s) online!`,
+      chatUsers
+    );
+    socket.leave("chat");
+    socket.emit("menu");
+  });
+
+  socket.on("disconnect", function () {
+    let user = chatUsers[socket.id];
+    delete chatUsers[socket.id];
+    io.to("chat").emit(
+      "left-chat",
+      `${user} has left the chat!`,
+      `${Object.keys(chatUsers).length} user(s) online!`,
+      chatUsers
     );
     socket.leave("chat");
     socket.emit("menu");

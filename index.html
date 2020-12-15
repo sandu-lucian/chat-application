@@ -10,6 +10,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="/socket.io/socket.io.js" type="module"></script>
     <script src="./js/main.js" type="module"></script>
     <title>Chat</title>
@@ -20,7 +24,7 @@
     <div
       class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
-      <h1 class="title mb-3">Chat with your friends!</h1>
+      <h1 class="mb-3">Chat with your friends!</h1>
       <div id="join-chat">
         <div class="input-group mb-3">
           <input
@@ -46,11 +50,24 @@
       <!-- CHAT -->
 
       <div id="chat-container" class="d-none">
-        <div id="chat-messages"></div>
+        <div class="d-flex">
+          <div id="chat-messages"></div>
+          <div>
+            <ul id="user-list"></ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <input type="color" id="msg-color" class="input-group-append" />
+          <div class="input-group mb-3">
+            <input type="text" id="message" placeholder="Your message" />
+            <div class="input-group-append">
+              <button id="send-message-btn" class="btn btn-primary">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
         <p id="online-users-count"></p>
-        <input type="text" id="message" placeholder="Your message" />
-        <input type="color" id="msg-color" />
-        <button id="send-message-btn">Send</button>
         <br />
         <button id="leave-chat-btn" class="btn btn-danger">Leave chat</button>
       </div>

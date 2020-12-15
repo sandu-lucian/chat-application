@@ -14,7 +14,7 @@ document
     }
   });
 
-socket.on("joined-chat", function (userName, userCounter) {
+socket.on("joined-chat", function (userName, userCounter, users) {
   document.getElementById("join-chat").classList.add("d-none");
   document.getElementById("chat-container").classList.remove("d-none");
   const messageContainer = document.getElementById("chat-messages");
@@ -24,6 +24,29 @@ socket.on("joined-chat", function (userName, userCounter) {
 
   const userCountSpan = document.getElementById("online-users-count");
   userCountSpan.innerHTML = userCounter;
+
+  const userList = document.getElementById("user-list");
+  userList.innerHTML = "";
+
+  for (const id in users) {
+    const user = document.createElement("li");
+    user.innerHTML = users[id];
+    userList.appendChild(user);
+  }
+});
+
+document
+  .getElementById("username-input")
+  .addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
+      document.getElementById("join-chat-btn").click();
+    }
+  });
+
+document.getElementById("message").addEventListener("keyup", function (e) {
+  if (e.key === "Enter") {
+    document.getElementById("send-message-btn").click();
+  }
 });
 
 document
@@ -50,7 +73,7 @@ document
     socket.emit("leave-chat");
   });
 
-socket.on("left-chat", function (message, userCounter) {
+socket.on("left-chat", function (message, userCounter, users) {
   const leaveMessageContainer = document.getElementById("chat-messages");
   const leaveMessageElement = document.createElement("p");
   leaveMessageElement.innerHTML = message;
@@ -58,6 +81,15 @@ socket.on("left-chat", function (message, userCounter) {
 
   const userCountSpan = document.getElementById("online-users-count");
   userCountSpan.innerHTML = userCounter;
+
+  const userList = document.getElementById("user-list");
+  userList.innerHTML = "";
+
+  for (const id in users) {
+    const user = document.createElement("li");
+    user.innerHTML = users[id];
+    userList.appendChild(user);
+  }
 });
 
 socket.on("menu", function () {
