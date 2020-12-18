@@ -30,6 +30,7 @@
           <input
             type="text"
             id="username-input"
+            class="form-control"
             placeholder="Enter your username"
           />
           <div class="input-group-append">
@@ -49,27 +50,91 @@
 
       <!-- CHAT -->
 
-      <div id="chat-container" class="d-none">
-        <div class="d-flex">
-          <div id="chat-messages"></div>
-          <div>
-            <ul id="user-list"></ul>
-          </div>
-        </div>
-        <div class="d-flex justify-content-between">
-          <input type="color" id="msg-color" class="input-group-append" />
-          <div class="input-group mb-3">
-            <input type="text" id="message" placeholder="Your message" />
-            <div class="input-group-append">
-              <button id="send-message-btn" class="btn btn-primary">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      <div
+        id="chat-container"
+        class="d-none shadow-lg p-3 mb-5 bg-white rounded"
+      >
+        <div class="d-flex chat">
+          <div id="chat-messages" class="rounded-left card p-2"></div>
+          <div class="card overflow-auto">
+            <div class="card-body p-0 position-relative">
+              <div
+                id="online-users-count"
+                class="text-center sticky-top text-white bg-dark"
+              ></div>
+              <button id="leave-chat-btn" class="btn btn-danger sticky-top">
+                Leave chat
               </button>
+              <ul
+                id="user-list"
+                class="rounded-right border-left-0 border-right-0 card list-group list-group-flush overflow-hidden"
+              ></ul>
             </div>
           </div>
         </div>
-        <p id="online-users-count"></p>
-        <br />
-        <button id="leave-chat-btn" class="btn btn-danger">Leave chat</button>
+
+        <div class="input-group input-group-lg">
+          <input
+            type="text"
+            id="message"
+            placeholder="Your message"
+            class="form-control"
+          />
+          <div class="input-group-append">
+            <button
+              type="button"
+              class="btn btn-dark"
+              data-toggle="modal"
+              data-target="#colorModal"
+            >
+              <i class="fa fa-cog" aria-hidden="false"></i>
+            </button>
+            <button id="send-message-btn" class="btn btn-primary">
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="colorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Message color</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              Click to change text color: <input type="color" id="msg-color" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="modal-dismiss"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Reset
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#colorModal"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

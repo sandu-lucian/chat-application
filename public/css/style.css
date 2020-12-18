@@ -1,34 +1,67 @@
 body {
   margin: 0px;
   padding: 0px;
+  background-image: url("../assets/chat-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 * {
   box-sizing: border-box;
 }
 
-#chat-container {
-  margin-top: 10px;
+.chat {
+  width: 700px;
+  height: 500px;
 }
 
 #chat-messages {
-  border: 1px solid black;
   width: 500px;
-  height: 500px;
   overflow: auto;
-  margin-bottom: 10px;
-  padding: 2px;
 }
 
 #user-list {
-  border: 1px solid black;
-  width: 200px;
-  height: 500px;
+  width: 198px;
   overflow: auto;
-  margin-bottom: 10px;
-  padding: 2px;
 }
 
 #leave-chat-btn {
-  margin: 10px 0px;
+  width: 100%;
+  top: 24px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+.message-animation {
+  animation: slide-left 0.4s ease-in-out;
+}
+
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

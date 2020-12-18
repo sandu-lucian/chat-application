@@ -18,7 +18,15 @@ socket.on("joined-chat", function (userName, userCounter, users) {
   document.getElementById("join-chat").classList.add("d-none");
   document.getElementById("chat-container").classList.remove("d-none");
   const messageContainer = document.getElementById("chat-messages");
-  const userElement = document.createElement("p");
+  const userElement = document.createElement("span");
+  userElement.classList.add(
+    "bg-success",
+    "text-center",
+    "text-white",
+    "rounded",
+    "mb-1",
+    "message-animation"
+  );
   userElement.innerHTML = userName;
   messageContainer.appendChild(userElement);
 
@@ -30,6 +38,7 @@ socket.on("joined-chat", function (userName, userCounter, users) {
 
   for (const id in users) {
     const user = document.createElement("li");
+    user.classList.add("list-group-item", "list-group-item-action");
     user.innerHTML = users[id];
     userList.appendChild(user);
   }
@@ -62,9 +71,19 @@ document
 
 socket.on("new-message", function (message) {
   const messageContainer = document.getElementById("chat-messages");
-  const messageElement = document.createElement("p");
-  messageElement.innerHTML = message;
+  const messageElement = document.createElement("div");
+  messageElement.classList.add(
+    "card",
+    "mb-1",
+    "shadow-sm",
+    "message-animation"
+  );
+  messageElement.innerHTML = `<div class="card-body py-2">${message}</div>`;
   messageContainer.appendChild(messageElement);
+
+  const chat = document.getElementById("chat-messages");
+  const chatHeight = chat.scrollHeight;
+  chat.scrollTo(0, chatHeight);
 });
 
 document
@@ -75,7 +94,14 @@ document
 
 socket.on("left-chat", function (message, userCounter, users) {
   const leaveMessageContainer = document.getElementById("chat-messages");
-  const leaveMessageElement = document.createElement("p");
+  const leaveMessageElement = document.createElement("span");
+  leaveMessageElement.classList.add(
+    "bg-warning",
+    "text-center",
+    "rounded",
+    "mb-1",
+    "message-animation"
+  );
   leaveMessageElement.innerHTML = message;
   leaveMessageContainer.appendChild(leaveMessageElement);
 
@@ -87,6 +113,7 @@ socket.on("left-chat", function (message, userCounter, users) {
 
   for (const id in users) {
     const user = document.createElement("li");
+    user.classList.add("list-group-item", "list-group-item-action");
     user.innerHTML = users[id];
     userList.appendChild(user);
   }
@@ -95,4 +122,9 @@ socket.on("left-chat", function (message, userCounter, users) {
 socket.on("menu", function () {
   document.getElementById("join-chat").classList.remove("d-none");
   document.getElementById("chat-container").classList.add("d-none");
+});
+
+document.getElementById("modal-dismiss").addEventListener("click", function () {
+  const colorInput = document.getElementById("msg-color");
+  colorInput.value = "#000000";
 });
