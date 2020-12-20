@@ -1,30 +1,40 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-image: url("../assets/chat-bg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 * {
   box-sizing: border-box;
 }
 
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/chat-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: fade-in 2s ease-in-out 1 forwards;
+}
+
 .chat {
-  width: 700px;
+  width: 100%;
   height: 500px;
 }
 
 #chat-messages {
-  width: 500px;
+  width: 75%;
   overflow: auto;
 }
 
-#user-list {
+#users {
+  width: 25%;
+}
+
+/* #user-list {
   width: 198px;
   overflow: auto;
-}
+} */
 
 #leave-chat-btn {
   width: 100%;
@@ -53,6 +63,15 @@ body {
 
 .message-animation {
   animation: slide-left 0.4s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-left {

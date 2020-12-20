@@ -42,6 +42,10 @@ socket.on("joined-chat", function (userName, userCounter, users) {
     user.innerHTML = users[id];
     userList.appendChild(user);
   }
+
+  const chat = document.getElementById("chat-messages");
+  const chatHeight = chat.scrollHeight;
+  chat.scrollTo(0, chatHeight);
 });
 
 document
@@ -53,7 +57,8 @@ document
   });
 
 document.getElementById("message").addEventListener("keyup", function (e) {
-  if (e.key === "Enter") {
+  const messageInputValue = document.getElementById("message").value;
+  if (messageInputValue && e.key === "Enter") {
     document.getElementById("send-message-btn").click();
   }
 });
@@ -65,7 +70,9 @@ document
     const message = msgInput.value;
     const colorInput = document.getElementById("msg-color");
     const msgColor = colorInput.value;
-    socket.emit("send-message", message, msgColor);
+    if (message) {
+      socket.emit("send-message", message, msgColor);
+    }
     msgInput.value = "";
   });
 
@@ -117,6 +124,10 @@ socket.on("left-chat", function (message, userCounter, users) {
     user.innerHTML = users[id];
     userList.appendChild(user);
   }
+
+  const chat = document.getElementById("chat-messages");
+  const chatHeight = chat.scrollHeight;
+  chat.scrollTo(0, chatHeight);
 });
 
 socket.on("menu", function () {
